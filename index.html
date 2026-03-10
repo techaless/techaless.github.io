@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alessio — Drone & Sicurezza Informatica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white: #ffffff;
+      --bg: #f7f6f3;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: #e4e2dd;
+      --drone: #1a6b3c;
+      --drone-light: #e8f5ee;
+      --sec: #1a3a6b;
+      --sec-light: #e8edf5;
+      --accent: #e8533a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-contact {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-contact a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 0.4rem;
+    }
+
+    .nav-contact a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+      animation: fadeIn 0.7s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 3.5rem;
+      font-weight: 300;
+    }
+
+    /* SERVICE CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 780px;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-decoration: none;
+      color: var(--text);
+      text-align: left;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.09);
+    }
+
+    .card:hover::before { transform: scaleX(1); }
+
+    .card-drone::before { background: var(--drone); }
+    .card-sec::before { background: var(--sec); }
+
+    .card-drone:hover { border-color: var(--drone); }
+    .card-sec:hover { border-color: var(--sec); }
+
+    .card-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-drone .card-icon { background: var(--drone-light); }
+    .card-sec .card-icon { background: var(--sec-light); }
+
+    .card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card-drone h2 { color: var(--drone); }
+    .card-sec h2 { color: var(--sec); }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .card-drone .card-link { color: var(--drone); }
+    .card-sec .card-link { color: var(--sec); }
+
+    .card-link .arrow {
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .card:hover .arrow { transform: translateX(4px); }
+
+    .wip-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffd966;
+      border-radius: 20px;
+      padding: 0.2rem 0.65rem;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* CONTACTS STRIP */
+    .contacts-strip {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      padding: 0.9rem 2.5rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      animation: fadeIn 0.9s 0.2s ease both;
+    }
+
+    .contacts-strip a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+
+    .contacts-strip a:hover { color: var(--accent); }
+
+    .contacts-strip .sep {
+      width: 1px;
+      height: 16px;
+      background: var(--border);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .cards { grid-template-columns: 1fr; max-width: 100%; }
+      .contacts-strip { border-radius: 16px; flex-direction: column; gap: 1rem; }
+      .contacts-strip .sep { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Alessio<span>.</span></a>
+  <div class="nav-contact">
+    Contattami →
+    <a href="mailto:info@alessiofazi.it">info@alessiofazi.it</a>
+  </div>
+</nav>
+
+<main class="hero">
+  <h1>Ciao, sono<br><em>Alessio</em></h1>
+  <p class="hero-sub">
+    Mi occupo di sicurezza informatica e offro servizi professionali con drone.
+    Scegli il servizio che ti interessa.
+  </p>
+
+  <div class="contacts-strip" style="margin-bottom:2.5rem;">
+    <a href="mailto:info@alessiofazi.it">✉️ info@alessiofazi.it</a>
+    <div class="sep"></div>
+    <a href="tel:+393452232896">📱 +39 345 223 2896</a>
+    <div class="sep"></div>
+    <a href="https://linkedin.com/in/tuoprofilo" target="_blank">💼 LinkedIn</a>
+  </div>
+
+  <div class="cards">
+    <a href="drone.html" class="card card-drone">
+      <div class="card-icon">🚁</div>
+      <h2>Drone</h2>
+      <p>Riprese aeree, ispezioni, fotografia e video per immobili, eventi, cantieri e molto altro.</p>
+      <span class="card-link">Scopri i servizi <span class="arrow">→</span></span>
+    </a>
+
+    <a href="security.html" class="card card-sec">
+      <div class="card-icon">🔐</div>
+      <h2>Sicurezza<br>Informatica <span class="wip-badge">WIP</span></h2>
+      <p>Vulnerability assessment, configurazione reti, supporto IT e formazione sulla cybersecurity.</p>
+      <span class="card-link">Scopri i servizi <span class="arrow">→</span></span>
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 Alessio Fazi — Tutti i diritti riservati
+</footer>
+
+</body>
+</html>
