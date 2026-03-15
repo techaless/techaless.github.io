@@ -172,56 +172,58 @@
       color: var(--green);
     }
 
-    /* MEDIA GALLERY */
+    /* ── MEDIA GALLERY ── */
     .gallery-section { margin-bottom: 4rem; }
 
+    /* Griglia principale: 3 colonne — la terza è stretta per i 9:16 */
     .media-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr 0.56fr; /* 0.56 ≈ 9/16 della larghezza di una colonna 16:9 */
       gap: 0.75rem;
       margin-top: 1.5rem;
     }
 
+    /* Cella generica */
     .media-slot {
       border-radius: 10px;
       overflow: hidden;
       background: var(--white);
-      border: 1.5px dashed var(--border);
-      aspect-ratio: 4/3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      font-size: 0.72rem;
-      color: var(--muted);
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: border-color 0.2s;
+      border: 1.5px solid var(--border);
+      position: relative;
     }
 
-    .media-slot:hover { border-color: var(--green-mid); }
-    .media-slot .slot-icon { font-size: 1.6rem; opacity: 0.35; }
+    /* Showreel: occupa tutte e 3 le colonne, 16:9 */
+    .slot-showreel {
+      grid-column: 1 / -1;
+      aspect-ratio: 16/9;
+    }
 
-    .media-slot.video-slot {
+    /* 16:9 standard (occupa 2 colonne) */
+    .slot-16-9 {
       grid-column: span 2;
       aspect-ratio: 16/9;
     }
 
-    /* how to replace note */
-    .replace-note {
-      background: var(--green-light);
-      border: 1px solid var(--green-mid);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
-      font-size: 0.82rem;
-      color: var(--green);
-      margin-top: 1rem;
-      line-height: 1.6;
+    /* 9:16 verticale: occupa la colonna stretta, altezza = altezza della cella 16:9 adiacente */
+    .slot-9-16 {
+      grid-column: span 1;
+      aspect-ratio: 9/16;
     }
 
-    .replace-note strong { font-weight: 600; }
+    /* Foto: stessa altezza delle celle 16:9 */
+    .slot-photo {
+      grid-column: 1 / -1;
+      aspect-ratio: 16/9;
+    }
+
+    /* Video e img riempiono la cella */
+    .media-slot video,
+    .media-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
     /* CONTACT */
     .contact-section {
@@ -317,7 +319,10 @@
       .content { padding: 2.5rem 1.25rem; }
       .services-list { grid-template-columns: 1fr; }
       .media-grid { grid-template-columns: 1fr; }
-      .media-slot.video-slot { grid-column: span 1; }
+      .slot-showreel,
+      .slot-16-9,
+      .slot-9-16,
+      .slot-photo { grid-column: span 1; aspect-ratio: 16/9; }
     }
   </style>
 </head>
@@ -371,61 +376,41 @@
   <!-- GALLERIA -->
   <div class="gallery-section">
     <h2 class="section-title">Portfolio</h2>
-    <p class="section-sub">Alcuni lavori</p>
+    <p class="section-sub">Una selezione di riprese aeree.</p>
 
     <div class="media-grid">
-      <!-- VIDEO PRINCIPALE -->
-      <div class="media-slot video-slot">
-        <!--
-          Per aggiungere un video:
-          <video src="video-showreel.mp4" controls style="width:100%;height:100%;object-fit:cover;"></video>
 
-          Per un video YouTube:
-          <iframe src="https://www.youtube.com/embed/TUO_ID" style="width:100%;height:100%;border:none;" allowfullscreen></iframe>
-        -->
-        <span class="slot-icon">▶</span>
-        <span>Inserisci il tuo video showreel</span>
+      <!-- SHOWREEL PRINCIPALE — Montecatini_916.mp4 (16:9) -->
+      <div class="media-slot slot-showreel">
+        <video src="Montecatini_916.mp4" autoplay muted loop playsinline></video>
       </div>
 
-      <!-- FOTO 1 -->
-      <div class="media-slot">
-        <!--
-          Per aggiungere una foto:
-          <img src="foto1.jpg" alt="Ripresa aerea" style="width:100%;height:100%;object-fit:cover;">
-        -->
-        <span class="slot-icon">📷</span>
-        <span>Foto 1</span>
+      <!-- Albero_Timeline.mp4 (16:9) — occupa 2 colonne -->
+      <div class="media-slot slot-16-9">
+        <video src="Albero_Timeline.mp4" autoplay muted loop playsinline></video>
       </div>
 
-      <!-- FOTO 2 -->
-      <div class="media-slot">
-        <span class="slot-icon">📷</span>
-        <span>Foto 2</span>
+      <!-- EremoSanMichele.mp4 (9:16) — colonna stretta -->
+      <div class="media-slot slot-9-16">
+        <video src="EremoSanMichele.mp4" autoplay muted loop playsinline></video>
       </div>
 
-      <!-- FOTO 3 -->
-      <div class="media-slot">
-        <span class="slot-icon">📷</span>
-        <span>Foto 3</span>
+      <!-- Macchina_Tagliato_Edit.mp4 (16:9) — occupa 2 colonne -->
+      <div class="media-slot slot-16-9">
+        <video src="Macchina_Tagliato_Edit.mp4" autoplay muted loop playsinline></video>
       </div>
 
-      <!-- FOTO 4 -->
-      <div class="media-slot">
-        <span class="slot-icon">📷</span>
-        <span>Foto 4</span>
+      <!-- Timeline 1.mov (9:16) — colonna stretta -->
+      <div class="media-slot slot-9-16">
+        <video src="Timeline_1.mov" autoplay muted loop playsinline></video>
       </div>
 
-      <!-- FOTO 5 -->
-      <div class="media-slot">
-        <span class="slot-icon">📷</span>
-        <span>Foto 5</span>
+      <!-- DJI_20260315154233_0027_D.jpg (foto 16:9) — full width -->
+      <div class="media-slot slot-photo">
+        <img src="DJI_20260315154233_0027_D.jpg" alt="Ripresa aerea DJI Neo">
       </div>
+
     </div>
-    <!--
-    <div class="replace-note">
-      <strong>Come aggiungere le tue foto:</strong> apri <code>drone.html</code> con Notepad, cerca i blocchi <code>&lt;!-- FOTO --&gt;</code> e sostituisci il contenuto con un tag <code>&lt;img src="nomefile.jpg"&gt;</code>. Carica le foto insieme al file HTML su GitHub.
-    </div>
-    -->
   </div>
 
   <!-- CONTATTI -->
@@ -465,7 +450,7 @@
 </div>
 
 <footer>
-  © 2025 Alessio Fazi — Tutti i diritti riservati <a href="index.html" style="color:inherit;">Torna alla home</a>
+  © 2025 Alessio Fazi — Tutti i diritti riservati &nbsp;·&nbsp; <a href="index.html" style="color:inherit;">Torna alla home</a>
 </footer>
 
 </body>
