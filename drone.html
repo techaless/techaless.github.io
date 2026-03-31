@@ -45,6 +45,12 @@
 
     .logo span { color: var(--accent); }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
     .nav-back {
       font-size: 0.85rem;
       font-weight: 600;
@@ -57,6 +63,22 @@
     }
 
     .nav-back:hover { color: var(--green); }
+
+    .nav-cta {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--green);
+      text-decoration: none;
+      padding: 0.5rem 1.1rem;
+      border-radius: 7px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-cta:hover {
+      background: #145530;
+      transform: translateY(-1px);
+    }
 
     /* HERO */
     .page-hero {
@@ -107,6 +129,35 @@
       font-weight: 300;
     }
 
+    /* ENAC BADGE in hero */
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.95);
+      backdrop-filter: blur(4px);
+    }
+
+    .badge-icon {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
     /* CONTENT */
     .content {
       max-width: 900px;
@@ -114,7 +165,7 @@
       padding: 4rem 2rem;
     }
 
-    /* SERVICES */
+    /* SECTION HEADER */
     .section-title {
       font-family: 'DM Serif Display', serif;
       font-size: 1.8rem;
@@ -130,6 +181,7 @@
       font-weight: 300;
     }
 
+    /* SERVICES */
     .services-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -166,84 +218,61 @@
       margin-bottom: 0.75rem;
     }
 
-    .svc-price {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--green);
-    }
-
-    /* ── MEDIA GALLERY ── */
-    .gallery-section { margin-bottom: 4rem; }
-
-    /* Griglia principale: 3 colonne — la terza è stretta per i 9:16 */
-    .media-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 0.56fr; /* 0.56 ≈ 9/16 della larghezza di una colonna 16:9 */
-      gap: 0.75rem;
-      margin-top: 1.5rem;
-    }
-
-    /* Cella generica */
-    .media-slot {
-      border-radius: 10px;
-      overflow: hidden;
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      position: relative;
-    }
-
-    /* Showreel: occupa tutte e 3 le colonne, 16:9 */
-    .slot-showreel {
-      grid-column: 1 / -1;
-      aspect-ratio: 16/9;
-    }
-
-    /* 16:9 standard (occupa 2 colonne) */
-    .slot-16-9 {
-      grid-column: span 2;
-      aspect-ratio: 16/9;
-    }
-
-    /* 9:16 verticale: occupa la colonna stretta, altezza = altezza della cella 16:9 adiacente */
-    .slot-9-16 {
-      grid-column: span 1;
-      aspect-ratio: 9/16;
-    }
-
-    /* Foto: stessa altezza delle celle 16:9 */
-    .slot-photo {
-      grid-column: 1 / -1;
-      aspect-ratio: 16/9;
-    }
-
-    /* Video e img riempiono la cella */
-    .media-slot video,
-    .media-slot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* CONTACT */
+    /* CONTACTS SECTION */
     .contact-section {
       background: var(--white);
       border: 1.5px solid var(--border);
       border-radius: 16px;
       padding: 2.5rem;
+      margin-bottom: 4rem;
     }
 
     .contact-section h2 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
     }
 
     .contact-section .sub {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       margin-bottom: 2rem;
       font-weight: 300;
+    }
+
+    /* ENAC inline block inside contacts */
+    .cert-inline {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--green-light);
+      border: 1.5px solid var(--green-mid);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cert-inline-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .cert-inline-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .cert-inline-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--green);
+    }
+
+    .cert-inline-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
     }
 
     .contact-items {
@@ -303,6 +332,52 @@
       transform: translateY(-2px);
     }
 
+    /* GALLERY */
+    .gallery-section { margin-bottom: 4rem; }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 0.56fr;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .media-slot {
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      position: relative;
+    }
+
+    .slot-showreel {
+      grid-column: 1 / -1;
+      aspect-ratio: 16/9;
+    }
+
+    .slot-16-9 {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+
+    .slot-9-16 {
+      grid-column: span 1;
+      aspect-ratio: 9/16;
+    }
+
+    .slot-photo {
+      grid-column: 1 / -1;
+      aspect-ratio: 16/9;
+    }
+
+    .media-slot video,
+    .media-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -315,6 +390,7 @@
 
     @media (max-width: 600px) {
       nav { padding: 1rem 1.25rem; }
+      .nav-cta { display: none; }
       .page-hero { padding: 3.5rem 1.5rem 3rem; }
       .content { padding: 2.5rem 1.25rem; }
       .services-list { grid-template-columns: 1fr; }
@@ -330,25 +406,33 @@
 
 <nav>
   <a href="index.html" class="logo">Alessio<span>.</span></a>
-  <a href="index.html" class="nav-back">← Torna alla home</a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Torna alla home</a>
+    <a href="#contatti" class="nav-cta">Contattami</a>
+  </div>
 </nav>
 
 <div class="page-hero">
   <p class="eyebrow">Servizi Drone</p>
   <h1>Vista dall'alto,<br><em>qualità da vicino.</em></h1>
   <p>Riprese aeree professionali per chi vuole raccontare il proprio progetto da una prospettiva unica.</p>
+  <div class="hero-badges">
+    <span class="badge"><span class="badge-icon">🪪</span> Patentino ENAC A1/A3</span>
+    <span class="badge"><span class="badge-icon">✅</span> Operatore Registrato ENAC</span>
+    <span class="badge"><span class="badge-icon">📍</span> Castelli Romani &amp; Provincia di Frosinone</span>
+  </div>
 </div>
 
 <div class="content">
 
-  <!-- SERVIZI -->
-  <h2 class="section-title">Cosa offro</h2>
+  <!-- I MIEI SERVIZI -->
+  <h2 class="section-title">I miei servizi</h2>
   <p class="section-sub">Ogni servizio è pensato per dare il massimo risultato, con materiale consegnato in alta risoluzione.</p>
 
   <div class="services-list">
     <div class="svc">
       <div class="svc-emoji">🏠</div>
-      <h3>Immobili & Real Estate</h3>
+      <h3>Immobili &amp; Real Estate</h3>
       <p>Foto e video aerei per agenzie immobiliari, privati e costruttori. Valorizza la proprietà con immagini che colpiscono.</p>
     </div>
     <div class="svc">
@@ -363,60 +447,68 @@
     </div>
     <div class="svc">
       <div class="svc-emoji">🌾</div>
-      <h3>Agricoltura & Territorio</h3>
+      <h3>Agricoltura &amp; Territorio</h3>
       <p>Documentazione di terreni agricoli, vigneti e aree naturali. Immagini aeree per monitoraggio e reportistica.</p>
     </div>
     <div class="svc">
       <div class="svc-emoji">🎬</div>
-      <h3>Contenuti Social & Web</h3>
+      <h3>Contenuti Social &amp; Web</h3>
       <p>Video e foto aeree ottimizzati per Instagram, YouTube, siti web e campagne pubblicitarie.</p>
     </div>
   </div>
 
-<!-- GALLERIA -->
+  <!-- PORTFOLIO -->
   <div class="gallery-section">
     <h2 class="section-title">Portfolio</h2>
     <p class="section-sub">Una selezione di riprese aeree nei Castelli Romani e dintorni.</p>
- 
+
     <div class="media-grid">
- 
-      <!-- SHOWREEL PRINCIPALE — Montecatini_916 (16:9) -->
+
+      <!-- SHOWREEL PRINCIPALE -->
       <div class="media-slot slot-showreel">
         <iframe src="https://www.youtube.com/embed/t3moUyaejCY?autoplay=1&mute=1&loop=1&playlist=t3moUyaejCY&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>
       </div>
- 
-      <!-- Albero_Timeline (16:9) — occupa 2 colonne -->
+
+      <!-- Albero_Timeline (16:9) -->
       <div class="media-slot slot-16-9">
         <iframe src="https://www.youtube.com/embed/wrs199tszyE?autoplay=1&mute=1&loop=1&playlist=wrs199tszyE&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>
       </div>
- 
-      <!-- EremoSanMichele (9:16 Shorts) — colonna stretta -->
+
+      <!-- EremoSanMichele (9:16 Shorts) -->
       <div class="media-slot slot-9-16">
         <iframe src="https://www.youtube.com/embed/KhcDeRZjw2U?autoplay=1&mute=1&loop=1&playlist=KhcDeRZjw2U&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>
       </div>
- 
-      <!-- Macchina_Tagliato_Edit (16:9) — occupa 2 colonne -->
+
+      <!-- Macchina_Tagliato_Edit (16:9) -->
       <div class="media-slot slot-16-9">
         <iframe src="https://www.youtube.com/embed/i1Z863BCtl8?autoplay=1&mute=1&loop=1&playlist=i1Z863BCtl8&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>
       </div>
- 
-      <!-- Timeline 1 (9:16 Shorts) — colonna stretta -->
+
+      <!-- Timeline 1 (9:16 Shorts) -->
       <div class="media-slot slot-9-16">
         <iframe src="https://www.youtube.com/embed/b7pDDctYkcs?autoplay=1&mute=1&loop=1&playlist=b7pDDctYkcs&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>
       </div>
- 
-      <!-- DJI_20260315154233_0027_D.jpg (foto 16:9) — full width -->
+
+      <!-- Foto aerea -->
       <div class="media-slot slot-photo">
         <img src="DJI_20260315154233_0027_D.JPG" alt="Ripresa aerea DJI Neo">
       </div>
- 
+
     </div>
   </div>
 
-  <!-- CONTATTI -->
-  <div class="contact-section">
-    <h2>Richiedi un preventivo</h2>
+  <!-- I MIEI CONTATTI -->
+  <div class="contact-section" id="contatti">
+    <h2>I miei contatti</h2>
     <p class="sub">Dimmi dove sei e cosa ti serve — rispondo entro la giornata.</p>
+
+    <div class="cert-inline">
+      <span class="cert-inline-icon">🪪</span>
+      <div class="cert-inline-text">
+        <span class="cert-inline-title">Patentino ENAC A1/A3 — Operatore Registrato</span>
+        <span class="cert-inline-desc">Volo autorizzato in categoria aperta A1 e A3. Operazione svolta nel rispetto della normativa ENAC/EASA.</span>
+      </div>
+    </div>
 
     <div class="contact-items">
       <div class="ci">
@@ -437,7 +529,7 @@
         <div class="ci-icon">📍</div>
         <div class="ci-text">
           <span class="ci-label">Zona operativa</span>
-          <span class="ci-val">Castelli Romani & Provincia di Frosinone</span>
+          <span class="ci-val">Castelli Romani &amp; Provincia di Frosinone</span>
         </div>
       </div>
     </div>
