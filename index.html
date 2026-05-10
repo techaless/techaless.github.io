@@ -118,10 +118,11 @@
       overflow: hidden;
     }
 
+    /* background-image settato inline sull'elemento HTML per evitare
+       problemi di case-sensitivity su GitHub Pages (Linux è case-sensitive) */
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('PXL_20260503_043226759.jpg');
       background-size: cover;
       background-position: center 55%;
       filter: brightness(0.72) saturate(1.05);
@@ -138,7 +139,6 @@
     .hero-gradient {
       position: absolute;
       inset: 0;
-      /* stronger at bottom (dark bg transition) + soft vignette at top for text legibility */
       background:
         linear-gradient(to top,  rgba(14,16,15,0.99) 0%, rgba(14,16,15,0.55) 40%, rgba(14,16,15,0.15) 70%, transparent 100%),
         linear-gradient(to bottom, rgba(14,16,15,0.45) 0%, transparent 25%);
@@ -443,14 +443,6 @@
       aspect-ratio: 16 / 7;
     }
 
-    .video-slot.wide {
-      aspect-ratio: 16 / 9;
-    }
-
-    .video-slot.portrait {
-      aspect-ratio: 9 / 16;
-    }
-
     .video-slot.row-2-wide {
       grid-column: span 1;
       aspect-ratio: 16 / 9;
@@ -481,20 +473,12 @@
       backdrop-filter: blur(6px);
     }
 
-    .video-label.tag-360 {
-      color: var(--green);
-      border-color: var(--green-dim);
-      background: rgba(14,16,15,0.9);
-    }
-
     /* ── PHOTO ── */
     .photo-slot {
-      grid-column: 1 / -1;
       aspect-ratio: 16 / 7;
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border);
-      margin-top: 1rem;
       position: relative;
     }
 
@@ -679,6 +663,7 @@
       .photo-slot { aspect-ratio: 4/3; }
       .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
       .badges-strip { padding: 1rem 1.25rem; }
+      .photos-grid { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -694,9 +679,14 @@
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO
+     Il background-image è impostato inline (style="background-image:...")
+     direttamente sull'elemento .hero-bg nel HTML, NON nel CSS.
+     Questo garantisce che GitHub Pages (Linux, case-sensitive) carichi
+     il file con il nome esatto: PXL_20260503_043226759.jpg
+-->
 <section class="hero" style="max-width:none; padding-top:0;">
-  <div class="hero-bg"></div>
+  <div class="hero-bg" style="background-image: url('PXL_20260503_043226759.jpg');"></div>
   <div class="hero-gradient"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Riprese Aeree Professionali</div>
@@ -758,7 +748,7 @@
     <div class="services-grid" id="servizi">
       <div class="svc">
         <div class="svc-emoji">🏠</div>
-        <h3>Immobili & Real Estate</h3>
+        <h3>Immobili &amp; Real Estate</h3>
         <p>Foto e video aerei per agenzie immobiliari, privati e costruttori. Valorizza la proprietà con immagini che colpiscono.</p>
       </div>
       <div class="svc">
@@ -773,7 +763,7 @@
       </div>
       <div class="svc">
         <div class="svc-emoji">🌾</div>
-        <h3>Agricoltura & Territorio</h3>
+        <h3>Agricoltura &amp; Territorio</h3>
         <p>Monitoraggio di terreni agricoli, vigneti e aree naturali. Immagini aeree per reportistica e documentazione.</p>
       </div>
       <div class="svc">
@@ -783,7 +773,7 @@
       </div>
       <div class="svc">
         <div class="svc-emoji">🎬</div>
-        <h3>Contenuti Social & Web</h3>
+        <h3>Contenuti Social &amp; Web</h3>
         <p>Video e foto ottimizzati per Instagram, YouTube, siti web e campagne pubblicitarie.</p>
       </div>
     </div>
@@ -804,25 +794,25 @@
       <span class="video-label">Showreel</span>
     </div>
 
-    <!-- Piazza di Amaseno (16:9) -->
+    <!-- Piazza di Amaseno -->
     <div class="video-slot row-2-wide">
       <iframe src="https://www.youtube.com/embed/Na4XQaFTRBY?autoplay=1&mute=1&loop=1&playlist=Na4XQaFTRBY&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <span class="video-label">Piazza di Amaseno</span>
     </div>
 
-    <!-- Cavalli sul fiume (16:9) -->
+    <!-- Cavalli sul fiume -->
     <div class="video-slot row-2-wide">
       <iframe src="https://www.youtube.com/embed/FzKQkDZbwlc?autoplay=1&mute=1&loop=1&playlist=FzKQkDZbwlc&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <span class="video-label">Cavalli sul Fiume</span>
     </div>
 
-    <!-- Albero Timeline (16:9) -->
+    <!-- Albero Timeline -->
     <div class="video-slot row-2-wide">
       <iframe src="https://www.youtube.com/embed/wrs199tszyE?autoplay=1&mute=1&loop=1&playlist=wrs199tszyE&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <span class="video-label">Albero · Timeline</span>
     </div>
 
-    <!-- EremoSanMichele Shorts (16:9 su mobile, portrait su desktop) -->
+    <!-- Eremo San Michele -->
     <div class="video-slot row-2-wide">
       <iframe src="https://www.youtube.com/embed/KhcDeRZjw2U?autoplay=1&mute=1&loop=1&playlist=KhcDeRZjw2U&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <span class="video-label">Eremo San Michele</span>
@@ -830,15 +820,15 @@
 
   </div>
 
-  <!-- Foto aeree -->
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
-    <div class="photo-slot" style="margin-top:0;">
-      <img src="DJI_20260315154233_0027_D.JPG" alt="Ripresa aerea - Castelli Romani" loading="lazy">
-      <span class="video-label" style="position:absolute;bottom:0.75rem;left:0.75rem;">📸 Foto aerea — Castelli Romani</span>
+  <!-- Foto aeree affiancate -->
+  <div class="photos-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
+    <div class="photo-slot">
+      <img src="DJI_20260315154233_0027_D.JPG" alt="Ripresa aerea - Mamma Ciociara" loading="lazy">
+      <span class="video-label">📸 Foto aerea — Mamma Ciociara</span>
     </div>
-    <div class="photo-slot" style="margin-top:0;">
-      <img src="PXL_20260503_043226759.jpg" alt="Tramonto sui Castelli Romani" loading="lazy">
-      <span class="video-label" style="position:absolute;bottom:0.75rem;left:0.75rem;">📸 Tramonto — Castelli Romani</span>
+    <div class="photo-slot">
+      <img src="PXL_20260503_043226759.jpg" alt="Tramonto - Roccasecca" loading="lazy">
+      <span class="video-label">📸 Tramonto — Roccasecca</span>
     </div>
   </div>
 
