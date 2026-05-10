@@ -9,17 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:       #f5f5f0;
-      --surface:  #161a17;
-      --card:     #1c211e;
-      --border:   #2a302c;
-      --green:    #4ade80;
-      --green-dim:#2d6e47;
-      --green-glow: rgba(74,222,128,0.15);
-      --white:    #f0f4f1;
-      --muted:    #7a8c7e;
-      --accent:   #f97316;
-      --text:     #e8ede9;
+      --bg:         #f5f5f0;
+      --surface:    #eaeae4;
+      --card:       #ffffff;
+      --border:     #d5d5cc;
+      --green:      #1a7a40;
+      --green-dim:  #a8d5b8;
+      --green-light:#e8f5ee;
+      --green-glow: rgba(26,122,64,0.08);
+      --white:      #ffffff;
+      --text:       #1a1a1a;
+      --muted:      #6b7068;
+      --accent:     #c0392b;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,17 +34,6 @@
       overflow-x: hidden;
     }
 
-    /* ── GRAIN OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.35;
-    }
-
     /* ── NAV ── */
     nav {
       position: fixed;
@@ -53,7 +43,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.1rem 2.5rem;
-      background: rgba(14,16,15,0.85);
+      background: rgba(245,245,240,0.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -62,14 +52,9 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.35rem;
       font-weight: 900;
-      color: var(--white);
+      color: var(--text);
       text-decoration: none;
       letter-spacing: -0.02em;
-    }
-
-    .logo em {
-      font-style: italic;
-      color: var(--green);
     }
 
     .nav-right {
@@ -93,7 +78,7 @@
     .nav-cta {
       font-size: 0.82rem;
       font-weight: 600;
-      color: var(--bg);
+      color: #ffffff;
       background: var(--green);
       text-decoration: none;
       padding: 0.5rem 1.15rem;
@@ -103,7 +88,7 @@
     }
 
     .nav-cta:hover {
-      background: #6ee89a;
+      background: #155f32;
       transform: translateY(-1px);
     }
 
@@ -117,12 +102,13 @@
       position: relative;
       overflow: hidden;
     }
+
     .hero-bg {
       position: absolute;
       inset: 0;
       background-size: cover;
       background-position: center 55%;
-      filter: brightness(0.72) saturate(1.05);
+      filter: brightness(0.68) saturate(1.0);
       z-index: 0;
       transform: scale(1.03);
       animation: heroZoom 18s ease-in-out infinite alternate;
@@ -137,8 +123,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to top,  rgba(14,16,15,0.99) 0%, rgba(14,16,15,0.55) 40%, rgba(14,16,15,0.15) 70%, transparent 100%),
-        linear-gradient(to bottom, rgba(14,16,15,0.45) 0%, transparent 25%);
+        linear-gradient(to top, rgba(245,245,240,0.97) 0%, rgba(245,245,240,0.45) 38%, rgba(245,245,240,0.05) 65%, transparent 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 22%);
       z-index: 1;
     }
 
@@ -180,7 +166,7 @@
       line-height: 1.0;
       letter-spacing: -0.03em;
       font-weight: 900;
-      color: var(--white);
+      color: var(--text);
       margin-bottom: 1.5rem;
     }
 
@@ -192,7 +178,7 @@
 
     .hero-sub {
       font-size: clamp(0.95rem, 2vw, 1.1rem);
-      color: rgba(240,244,241,0.65);
+      color: var(--muted);
       max-width: 500px;
       line-height: 1.75;
       font-weight: 300;
@@ -211,7 +197,7 @@
       align-items: center;
       gap: 0.5rem;
       background: var(--green);
-      color: var(--bg);
+      color: #ffffff;
       text-decoration: none;
       font-weight: 700;
       font-size: 0.9rem;
@@ -221,13 +207,13 @@
       transition: background 0.2s, transform 0.2s;
     }
 
-    .btn-primary:hover { background: #6ee89a; transform: translateY(-2px); }
+    .btn-primary:hover { background: #155f32; transform: translateY(-2px); }
 
     .btn-ghost {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border);
       color: var(--muted);
       text-decoration: none;
       font-weight: 500;
@@ -246,14 +232,14 @@
       flex-wrap: wrap;
       padding: 1.5rem 2.5rem;
       border-bottom: 1px solid var(--border);
-      background: var(--surface);
+      background: var(--white);
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      background: var(--card);
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 0.35rem 0.9rem;
@@ -263,7 +249,11 @@
       letter-spacing: 0.04em;
     }
 
-    .badge.green { border-color: var(--green-dim); color: var(--green); background: rgba(74,222,128,0.06); }
+    .badge.green {
+      border-color: var(--green-dim);
+      color: var(--green);
+      background: var(--green-light);
+    }
 
     /* ── SECTION COMMON ── */
     section { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
@@ -282,7 +272,7 @@
       font-size: clamp(1.9rem, 4vw, 3rem);
       font-weight: 900;
       letter-spacing: -0.02em;
-      color: var(--white);
+      color: var(--text);
       margin-bottom: 0.5rem;
       line-height: 1.1;
     }
@@ -309,7 +299,7 @@
       border: 1.5px solid var(--border);
       border-radius: 14px;
       padding: 2rem 1.75rem;
-      transition: border-color 0.25s, transform 0.25s;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
       position: relative;
       overflow: hidden;
     }
@@ -327,6 +317,7 @@
     .drone-card:hover {
       border-color: var(--green-dim);
       transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26,122,64,0.1);
     }
 
     .drone-card:hover::after { opacity: 1; }
@@ -335,7 +326,7 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.4rem;
       font-weight: 700;
-      color: var(--white);
+      color: var(--text);
       margin-bottom: 0.3rem;
     }
 
@@ -346,7 +337,7 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--green);
-      background: rgba(74,222,128,0.1);
+      background: var(--green-light);
       border: 1px solid var(--green-dim);
       border-radius: 4px;
       padding: 0.15rem 0.6rem;
@@ -383,7 +374,11 @@
     }
 
     /* ── SERVICES ── */
-    .services-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .services-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
 
     .services-grid {
       display: grid;
@@ -396,17 +391,20 @@
       border: 1.5px solid var(--border);
       border-radius: 12px;
       padding: 1.75rem;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .svc:hover { border-color: var(--green-dim); }
+    .svc:hover {
+      border-color: var(--green-dim);
+      box-shadow: 0 6px 20px rgba(26,122,64,0.08);
+    }
 
     .svc-emoji { font-size: 1.6rem; margin-bottom: 0.9rem; }
 
     .svc h3 {
       font-size: 0.95rem;
       font-weight: 600;
-      color: var(--white);
+      color: var(--text);
       margin-bottom: 0.4rem;
     }
 
@@ -430,7 +428,7 @@
     .video-slot {
       border-radius: 12px;
       overflow: hidden;
-      background: var(--card);
+      background: var(--surface);
       border: 1px solid var(--border);
       position: relative;
     }
@@ -458,7 +456,7 @@
       position: absolute;
       bottom: 0.75rem;
       left: 0.75rem;
-      background: rgba(14,16,15,0.85);
+      background: rgba(255,255,255,0.92);
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 0.25rem 0.6rem;
@@ -483,14 +481,10 @@
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
-      filter: brightness(0.9) saturate(0.9);
-      transition: filter 0.4s, transform 0.6s;
+      transition: transform 0.6s;
     }
 
-    .photo-slot:hover img {
-      filter: brightness(1) saturate(1.1);
-      transform: scale(1.02);
-    }
+    .photo-slot:hover img { transform: scale(1.03); }
 
     /* ── CONTACT ── */
     .contact-section {
@@ -508,7 +502,7 @@
     .contact-left .section-title { margin-bottom: 1rem; }
 
     .cert-block {
-      background: var(--card);
+      background: var(--green-light);
       border: 1.5px solid var(--green-dim);
       border-radius: 10px;
       padding: 1rem 1.25rem;
@@ -570,10 +564,10 @@
     .ci-val {
       font-size: 0.92rem;
       font-weight: 600;
-      color: var(--white);
+      color: var(--text);
     }
 
-    .ci-val a { color: var(--white); text-decoration: none; }
+    .ci-val a { color: var(--text); text-decoration: none; }
     .ci-val a:hover { color: var(--green); }
 
     .contact-right {
@@ -581,12 +575,13 @@
       border: 1.5px solid var(--border);
       border-radius: 14px;
       padding: 2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
     }
 
     .contact-right h3 {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem;
-      color: var(--white);
+      color: var(--text);
       margin-bottom: 0.4rem;
     }
 
@@ -603,7 +598,7 @@
       width: 100%;
       text-align: center;
       background: var(--green);
-      color: var(--bg);
+      color: #ffffff;
       text-decoration: none;
       font-weight: 700;
       font-size: 0.95rem;
@@ -613,7 +608,7 @@
       transition: background 0.2s, transform 0.2s;
     }
 
-    .btn-big:hover { background: #6ee89a; transform: translateY(-2px); }
+    .btn-big:hover { background: #155f32; transform: translateY(-2px); }
 
     .social-row {
       display: flex;
@@ -631,10 +626,14 @@
       font-weight: 600;
       padding: 0.7rem;
       border-radius: 8px;
-      transition: border-color 0.2s, color 0.2s;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
 
-    .social-btn:hover { border-color: var(--green); color: var(--green); }
+    .social-btn:hover {
+      border-color: var(--green);
+      color: var(--green);
+      background: var(--green-light);
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -643,6 +642,7 @@
       font-size: 0.78rem;
       color: var(--muted);
       border-top: 1px solid var(--border);
+      background: var(--white);
     }
 
     /* ── MOBILE ── */
@@ -676,6 +676,7 @@
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero" style="max-width:none; padding-top:0;">
   <div class="hero-bg" style="background-image: url('PXL_20260503_043226759.jpg');"></div>
   <div class="hero-gradient"></div>
@@ -778,40 +779,29 @@
   <p class="section-sub">Una selezione di video nei Castelli Romani, Valle del Liri e dintorni.</p>
 
   <div class="video-grid">
-
-    <!-- SHOWREEL principale -->
     <div class="video-slot featured">
       <iframe src="https://www.youtube.com/embed/t3moUyaejCY?autoplay=1&mute=1&loop=1&playlist=t3moUyaejCY&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <span class="video-label">Montecatini</span>
     </div>
-
-    <!-- Piazza di Amaseno -->
     <div class="video-slot row-2-wide">
       <iframe src="https://www.youtube.com/embed/Na4XQaFTRBY?autoplay=1&mute=1&loop=1&playlist=Na4XQaFTRBY&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <span class="video-label">Piazza di Amaseno</span>
     </div>
-
-    <!-- Cavalli sul fiume -->
     <div class="video-slot row-2-wide">
       <iframe src="https://www.youtube.com/embed/FzKQkDZbwlc?autoplay=1&mute=1&loop=1&playlist=FzKQkDZbwlc&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <span class="video-label">Cavalli sul Fiume</span>
     </div>
-
-    <!-- Albero Timeline -->
     <div class="video-slot row-2-wide">
       <iframe src="https://www.youtube.com/embed/wrs199tszyE?autoplay=1&mute=1&loop=1&playlist=wrs199tszyE&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <span class="video-label">Albero · Timeline</span>
     </div>
-
-    <!-- Eremo San Michele -->
     <div class="video-slot row-2-wide">
       <iframe src="https://www.youtube.com/embed/KhcDeRZjw2U?autoplay=1&mute=1&loop=1&playlist=KhcDeRZjw2U&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <span class="video-label">Eremo San Michele</span>
     </div>
-
   </div>
 
-  <!-- Foto aeree affiancate -->
+  <!-- Foto aerea -->
   <div class="photos-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
     <div class="photo-slot">
       <img src="DJI_20260315154233_0027_D.JPG" alt="Ripresa aerea - Mamma Ciociara" loading="lazy">
